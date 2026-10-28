@@ -1,0 +1,5 @@
+.venv/
+.venv-windows/
+__pycache__/
+*.py[cod]
+.matplotlib-cache/
