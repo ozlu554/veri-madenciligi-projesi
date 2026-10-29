@@ -48,5 +48,6 @@ depo dışına yedeklemelidir: bu değişikliği çekmek, takipten çıkarılan 
 dosyalarını yerel çalışma klasöründen silebilir. Ardından her bilgisayarda
 yerel ortam oluşturulup `requirements.txt` ile kurulum yapılır.
 
-Kod ve veri paylaşılır; sanal ortamlar paylaşılmaz. Bu aşamada EDA, veri
-temizleme veya model eğitimi yapılmamıştır.
+Kod ve veri paylaşılır; sanal ortamlar paylaşılmaz. EDA, veri temizleme,
+özellik mühendisliği ve modelleme öncesi veri hazırlığı tamamlanmıştır;
+model eğitimi yapılmamıştır. İşlem sırası ve çıktı rehberi README.md'dedir.
