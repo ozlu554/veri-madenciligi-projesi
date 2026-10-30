@@ -8,9 +8,11 @@ Amaç; keşifsel veri analizi, temizleme ve özellik mühendisliği uygulayarak
 veriyi regresyon ve kümeleme için ayrı biçimlerde hazırlamaktır. Tahmin veya
 kümeleme modeli eğitilmedi; doğruluk, R², hata metriği ya da küme skoru üretilmedi.
 
-Ham veri `used_cars.csv`: 4.009 kayıt, 12 sütun. Veri toplama tarihi, kaynak
-bağlantısı, lisans ve örnekleme yöntemi henüz belgelenmedi. Sunum/teslimden önce
-veri setinin temin edildiği kaynak bu bilgilere eklenmelidir. Mesafe mil
+Ham veri `used_cars.csv`: 4.009 kayıt, 12 sütun. Kaynak: Taeef Najib,
+[Used Car Price Prediction Dataset (Kaggle)](https://www.kaggle.com/datasets/taeefnajib/used-car-price-prediction-dataset).
+Kaggle resmi kaydında belirtilen lisans [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Atıf, dönüşümler ve doğrulama sınırları [VERI_KAYNAGI.md](VERI_KAYNAGI.md)
+içindedir. Veri toplama tarihi ve örnekleme yöntemi doğrulanmadı. Mesafe mil
 birimindedir; fiyatlarda `$` vardır, para birimi kodu doğrulanmamıştır.
 
 ## İşlem sırası ve sonuçlar
@@ -65,7 +67,12 @@ macOS:
 .venv/bin/python verify_project.py
 ```
 
-Windows'ta çalıştırma doğrulandı; Mac üzerinde henüz çalıştırma doğrulaması yok.
+Windows ortamı daha önce doğrulandı. Mac üzerinde ortak paket sürümleri,
+`pip check`, `verify_project.py`, kayıtlı ön işleyicilerin mevcut matrislerle
+eşleşmesi ve grafik çizimi doğrulandı. Tüm analiz/hazırlık akışı Mac üzerinde geçici kopyada başarıyla çalıştırıldı;
+mevcut proje çıktıları değiştirilmedi.
+Doğrulayıcı Windows manifest yollarını ve Git kaynaklı LF/CRLF farklarını
+destekler; farklı satır sonlarıyla eşleşme ayrıca bildirilir.
 Ortak doğrudan bağımlılıklar sabittir; Python ve alt bağımlılık sürümleri
 farklı olabileceğinden bilgisayarlar arasında birebir aynı ortam garantisi yoktur.
 
@@ -113,3 +120,51 @@ Mac `.venv` klasörü eski commitlerden beri Git tarafından takip edilmektedir;
 
 Bu kapsamın sonunda model eğitimi yapılmaz. Bundan sonraki çalışmalar ayrı
 karar/onay gerektirir; mevcut çıktıların hazır olması model başarısı kanıtı değildir.
+
+## Yerel sunum arayüzü
+
+`arayuz/index.html` dosyasını çift tıklayarak Chrome, Edge veya Safari'de açın.
+Sunucu, internet veya yeni Python paketi gerekmez. Arayüz mevcut veri ve
+raporların bir anlık kopyasını içerir; kaynak dosyalara yazmaz.
+
+Genel bakış, veri gezgini (ham/temizlenmiş/özellikli veri), arama, marka filtresi,
+sıralama, CSV indirme, dağılımlar ve yöntem raporları bulunur. Grafikler tüm
+veriyi kullanır; tablodaki filtrelerden etkilenmez. İndirilen CSV ayrı bir
+kopyadır; formül benzeri metinlere elektronik tablo güvenliği için ön ek eklenir.
+
+Veri veya raporlar değiştiğinde görünümü yeniden üretin:
+
+Windows: `.\.venv-windows\Scripts\python.exe arayuz_olustur.py`
+
+Mac: `.venv/bin/python -B arayuz_olustur.py`
+
+`sablon.html` geliştirme şablonudur; sunum için `index.html` açılmalıdır.
+Arayüz model eğitmez ve tahmin üretmez. Gösterilen zaman görünümün oluşturulma
+zamanıdır; veri toplama tarihi değildir.
+
+### Geliştirilmiş sunum ekranı ve önceki sürüm
+
+Yeni arayüzde aynı araç için ham/temizlenmiş veri karşılaştırması, araç detay
+kartı, marka filtreli grafikler ve çubuk ayrıntıları bulunur. Sağ üstteki
+“Sunum görünümü” ile beş anlatım ekranı arasında geçilir; sol/sağ oklar da
+kullanılabilir. Sunumdan çıkış: “Sunumdan çık” veya Escape.
+
+Önceki açık mavi ekranın HTML ve şablonu `arayuz/yedek-acik-mavi/` içinde
+korunmuştur. `ozet.json` yedek dosyaların SHA-256 özetlerini içerir.
+Geri dönüşte hem `index.html` hem `sablon.html` bu yedekten geri alınmalıdır;
+yalnızca HTML geri alınırsa sonraki üretimde yeni tasarım tekrar oluşur.
+
+### Ek görseller
+
+- Genel bakışta iki marka seçilerek kayıt sayıları ve medyan fiyat/mesafe/yıl
+  karşılaştırılır. Bu yalnızca mevcut veri setinin betimleyici özetidir.
+- Önce/sonra ekranında seçilen aracın ham, temizlenmiş ve çıkarılmış özellikleri
+  üç aşamalı bir anlatımla açılır. Oynat, duraklat, başa dön ve doğrudan aşama
+  seçimi desteklenir; kaynak veri üzerinde işlem yapılmaz.
+- Keşifsel analizde fiyat–mesafe dağılım grafiği marka filtresini kullanır.
+  Noktalar yakıt türüne göre renklidir; fare veya dokunmayla bir araç seçilip
+  detay kartı açılabilir. Klavye kullanıcıları aynı kayıtları Veri gezgininde
+  inceleyebilir. Fiyat ekseni doğrusal veya logaritmik seçilebilir.
+
+İlk açık mavi sürüm `arayuz/yedek-acik-mavi/`, bu eklemelerden önceki
+geliştirilmiş sürüm `arayuz/yedek-gelistirilmis-mavi/` içinde korunur.

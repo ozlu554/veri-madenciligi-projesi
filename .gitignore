@@ -3,3 +3,6 @@
 __pycache__/
 *.py[cod]
 .matplotlib-cache/
+
+# macOS klasör görünümü dosyaları
+.DS_Store
